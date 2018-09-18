@@ -82,4 +82,19 @@ describe("User", function() {
         done();
       });
   });
+
+  it("POST /users/login should email is invalid", function(done) {
+    chai
+      .request(url)
+      .post("/users/login")
+      .send({
+        email: "",
+        password: ""
+      })
+      .end(function(err, res) {
+        console.log(res.body);
+        expect(res).to.have.status(400);
+        done();
+      });
+  });
 });
