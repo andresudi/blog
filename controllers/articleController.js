@@ -10,7 +10,7 @@ const createArticle = (req, res) => {
     Article.create({
         title: req.body.title,
         description: req.body.description,
-        UserId: decoded.id,
+        userId: decoded.id,
         image: req.body.image
     })
     .then((data) => {
@@ -28,10 +28,10 @@ const createArticle = (req, res) => {
 
 const getArticle = (req, res) => {
     Article.find({})
-    .populate('UserId')
+    .populate('userId')
     .then((data) => {
         res.status(201).json({
-            message: `successfully create article`,
+            message: `List of all articles`,
             data
         })
     })
@@ -44,10 +44,10 @@ const getArticle = (req, res) => {
 
 const getOneArticle = (req, res) =>{
     Article.findOne({_id: req.params.id})
-    .populate('UserId')
+    .populate('userId')
     .then((article) => {
         res.status(201).json({
-            message: `articles with UserId`,
+            message: `articles with id ${req.params.id}`,
             data: article
         })
     })
@@ -62,8 +62,8 @@ const getMyArticle = (req, res) => {
     let token = req.headers.token
     let decoded = jwt.verify(token, process.env.jwt_secret)
     Article.find({
-        UserId: decoded.id
-    }).populate('UserId')
+        userId: decoded.id
+    }).populate('userId')
         .then((data) => {
             res.status(201).json({
                 message: `my articles`,
