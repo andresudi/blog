@@ -73,7 +73,6 @@ describe("User", function() {
         password: "123456"
       })
       .end(function(err, res) {
-        console.log(res.body);
         expect(res).to.have.status(200);
         expect(res.body).to.be.a("object");
         expect(res.body.message).to.equal("Successfully login");
@@ -92,7 +91,6 @@ describe("User", function() {
         password: ""
       })
       .end(function(err, res) {
-        console.log(res.body);
         expect(res).to.have.status(400);
         done();
       });
