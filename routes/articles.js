@@ -11,30 +11,30 @@ const {
   deleteComment
 } = require("../controllers/articleController");
 const isLogin = require("../middlewares/isLogin");
-const images = require("../helpers/image.js");
+// const images = require("../helpers/image.js");
 
-router.post(
-  "/upload",
-  images.multer.single("image"),
-  images.sendUploadToGCS,
-  (req, res) => {
-    res.send({
-      status: 200,
-      message: "Your file is successfully uploaded",
-      link: req.file.cloudStoragePublicUrl
-    });
-  }
-);
-
+// router.post(
+//   "/upload",
+//   images.multer.single("image"),
+//   images.sendUploadToGCS,
+//   (req, res) => {
+//     res.send({
+//       status: 200,
+//       message: "Your file is successfully uploaded",
+//       link: req.file.cloudStoragePublicUrl
+//     });
+//   }
+// );
+ 
 router.get("/", getArticle);
 router.post('/', isLogin, createArticle)
 
-router.post(
-  "/",
-  images.multer.single("image"),
-  images.sendUploadToGCS,
-  createArticle
-);
+// router.post(
+//   "/",
+//   images.multer.single("image"),
+//   images.sendUploadToGCS,
+//   createArticle
+// );
 
 router.put("/:id", isLogin, editArticle);
 router.delete("/:id", isLogin, deleteArticle);

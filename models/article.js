@@ -8,7 +8,7 @@ var articleSchema = new Schema ({
     description: {
         type: String
     },
-    UserId: { 
+    userId: { 
         type:Schema.Types.ObjectId, 
         ref: 'User' 
     },
